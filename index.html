@@ -20,6 +20,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Permet de forcer la mise à jour du cache à chaque changement -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 <body>
     <header class="site-header">
@@ -99,5 +104,40 @@
     </button>
 
     <script src="js/app.js"></script>
+    
+    <!-- Enregistrement du service worker -->
+    <script>
+        // Enregistrement du service worker seulement si le navigateur le prend en charge
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/js/service-worker.js')
+                    .then(function(registration) {
+                        console.log('Service Worker enregistré avec succès:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('Échec de l\'enregistrement du Service Worker:', error);
+                    });
+                
+                // Vérifier s'il y a des mises à jour du service worker
+                navigator.serviceWorker.addEventListener('controllerchange', function() {
+                    console.log('Nouveau service worker activé, rechargement de la page');
+                    // Recharger la page pour appliquer les changements
+                    window.location.reload();
+                });
+            });
+            
+            // Fonctionnalité pour forcer une mise à jour du cache lors de la mise à jour du site
+            let refreshing = false;
+            navigator.serviceWorker.addEventListener('message', function(event) {
+                if (event.data === 'updateAvailable' && !refreshing) {
+                    refreshing = true;
+                    // Informer l'utilisateur ou recharger automatiquement
+                    if (confirm('Une mise à jour du site est disponible. Voulez-vous rafraîchir maintenant?')) {
+                        window.location.reload();
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html> 

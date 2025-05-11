@@ -1,7 +1,7 @@
 {
   "name": "osu-skin-folder",
   "version": "1.0.0",
-  "description": "Bienvenue dans le repository \"Osu! Skin Folder\". Ce projet a été créé par Yasunaii pour rassembler les skins qu'il a le plus utilisé et ceux de ses amis.",
+  "description": "Collections of skins used by Yuzuctus",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
