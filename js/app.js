@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const forumLink = document.getElementById('forum-link');
     const closeButton = document.querySelector('.close-button');
     const backToTopBtn = document.getElementById('back-to-top');
+    const header = document.querySelector('.site-header');
+    
+    // Variables pour le contrôle du header
+    let lastScrollTop = 0;
     
     // Cache pour les images déjà chargées
     const imageCache = new Map();
@@ -21,11 +25,32 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Back to top button functionality
     const handleScroll = () => {
-        if (window.scrollY > 300) {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        
+        // Back to top button visibility
+        if (scrollTop > 300) {
             backToTopBtn.classList.add('visible');
         } else {
             backToTopBtn.classList.remove('visible');
         }
+        
+        // Header hide/show on scroll
+        if (scrollTop > 50) { // Seuil réduit pour une détection plus rapide
+            // Détection de la direction du scroll
+            if (scrollTop > lastScrollTop + 3) { // Réduit pour une meilleure réactivité
+                // Scroll vers le bas - cacher le header immédiatement
+                header.classList.add('hidden');
+            } else if (lastScrollTop - scrollTop > 3) { // Seuil également réduit pour la remontée
+                // Scroll vers le haut - montrer le header
+                header.classList.remove('hidden');
+            }
+            // Pas d'else ici, ce qui permet de conserver l'état actuel pour les micro-mouvements
+        } else {
+            // Au début de la page, toujours montrer le header
+            header.classList.remove('hidden');
+        }
+        
+        lastScrollTop = scrollTop;
     };
     
     const scrollToTop = () => {
