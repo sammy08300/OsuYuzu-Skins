@@ -9,29 +9,60 @@
   },
   "skins": [
     {
-        "order": 4,
-        "name": "MISKADELUXE",
-        "downloadLink": "https://drive.google.com/file/d/1F4pYIPZJyaV3u7RB5gpqimeJjjEqaJWI/view?usp=sharing",
-        "forumLink": null,
-        "note": "Aucun poste forum",
-        "imageUrl": "/img/MISKADELXE_converted.avif"
-      },
-    {
       "order": 1,
+      "name": "Lighis_ _ The Sun_ The Moon_ The Star _",
+      "downloadLink": "https://drive.google.com/file/d/1SiukraDC4lFB6eLTJ2UWhc8kVoDQ-0w4/view?usp=sharing",
+      "forumLink": "https://osu.ppy.sh/community/forums/topics/1890875?n=1",
+      "imageUrl": "/img/_____ Lighis_ _ The Sun_ The Moon_ The Star _jpg_converted.avif"
+    },
+    {
+      "order": 7,
+      "name": "Myrtille (Vaaaanille)",
+      "downloadLink": "https://drive.google.com/file/d/18nyudcigIHwwp3QlO6LsToAlV5mPz6R4/view?usp=sharing",
+      "forumLink": null,
+      "note": "Aucun poste forum",
+      "imageUrl": "/img/Myrtille (Vaaaanille)_converted.avif"
+    },
+    {
+      "order": 2,
+      "name": "MISKADELUXE",
+      "downloadLink": "https://drive.google.com/file/d/1F4pYIPZJyaV3u7RB5gpqimeJjjEqaJWI/view?usp=drive_link",
+      "forumLink": null,
+      "note": "Aucun poste forum",
+      "imageUrl": "/img/MISKADELUXE_converted.avif"
+    },
+    {
+      "order": 5,
+      "name": "- Frieren [NM] ([ Bimbo ])",
+      "downloadLink": "https://drive.google.com/file/d/1KdTb32tibaRfony48smauFPJgxqxRXU0/view?usp=sharing",
+      "forumLink": null,
+      "note": "Aucun poste forum",
+      "imageUrl": "/img/- Frieren [NM] ([ Bimbo ])_converted.avif"
+    },
+    {
+      "order": 6,
+      "name": "- Frieren [DT] ([ Bimbo ])",
+      "downloadLink": "https://drive.google.com/file/d/1i42AqKDuTqztNuYkxSmM7yW-87DVozrk/view?usp=sharing",
+      "forumLink": null,
+      "note": "Aucun poste forum",
+      "imageUrl": "/img/- Frieren [DT] ([ Bimbo ])_converted.avif"
+    },
+    {
+      "order": 3,
       "name": "anzt11w V3 - てんてこ",
       "downloadLink": "https://drive.google.com/file/d/1KdYi0vG-WFkc3NN6qHRmg0h5qauSzlMa/view?usp=sharing",
       "forumLink": "https://osu.ppy.sh/community/forums/topics/1948897?n=1",
       "imageUrl": "/img/anzt11w V3 - てんてこ_converted.avif"
     },
     {
-      "order": 2,
+      "order": 4,
       "name": "Wintherest - v21022023 (Redo_)",
       "downloadLink": "https://drive.google.com/file/d/1HjdBghbjo1DSB1XUubiUMZ-ZGocfVCv4/view?usp=sharing",
       "forumLink": "https://osu.ppy.sh/community/forums/topics/1498493?n=1",
       "imageUrl": "/img/Wintherest - v21022023 (Redo_)_converted.avif"
     },
     {
-      "order": 7,
+      "order": 10,
       "name": "XooMoon Long Blue Trail",
       "downloadLink": "https://drive.google.com/file/d/1Aa7nkG-uYMc3IJAdBwpnoeGJiqmmbexg/view?usp=sharing",
       "forumLink": null,
@@ -39,14 +70,14 @@
       "imageUrl": "/img/XooMoon Long Blue Trail_converted.avif"
     },
     {
-      "order": 8,
+      "order": 12,
       "name": "IJN Yamashiro V2 (16-9) v2.0.0",
       "downloadLink": "https://drive.google.com/file/d/1XigeCz7kcSG3IqkbevRcT6SmrILhDwts/view?usp=sharing",
       "forumLink": "https://osu.ppy.sh/community/forums/topics/1004844?n=1",
       "imageUrl": "/img/IJN Yamashiro V2 (16-9) v2.0.0_converted.avif"
     },
     {
-      "order": 6,
+      "order": 11,
       "name": "anny v2 [ML] (coolrmsil.com)",
       "downloadLink": "https://drive.google.com/file/d/1SXI5qNGxXFyijGbKaeDPYmAEO4xK4TMk/view?usp=sharing",
       "forumLink": null,
@@ -54,7 +85,7 @@
       "imageUrl": "/img/Anny v2 [ML] (coolrmsil.com)_converted.avif"
     },
     {
-      "order": 5,
+      "order": 8,
       "name": "『XooMoon Re;Done』 - Reedkussy",
       "downloadLink": "https://drive.google.com/file/d/1NHhTEi_KQpeENgGRK1ZRQGOtkO2IO155/view?usp=sharing",
       "forumLink": null,
@@ -62,21 +93,21 @@
       "imageUrl": "/img/『XooMoon Re;Done』 - Reedkussy_converted.avif"
     },
     {
-      "order": 9,
+      "order": 14,
       "name": "___ Arknights Ch_en v3 (Inflique)",
       "downloadLink": "https://drive.google.com/file/d/1thPCttheXez-ONArKGP-GMVaeYxe4wCO/view?usp=sharing",
       "forumLink": "https://osu.ppy.sh/community/forums/topics/1472240?n=1",
       "imageUrl": "/img/___ Arknights Ch_en v3 (Inflique)_converted.avif"
     },
     {
-      "order": 10,
+      "order": 13,
       "name": "Moonshine 2.1 [NM] (moonstaar)",
       "downloadLink": "https://drive.google.com/file/d/1b5_wVDZ1UqKPKaj40732KyMZHxnRR_RU/view?usp=sharing",
       "forumLink": "https://osu.ppy.sh/community/forums/topics/1610388?n=1",
       "imageUrl": "/img/Moonshine 2.1 [NM] (moonstaar)_converted.avif"
     },
     {
-      "order": 3,
+      "order": 9,
       "name": "FREEDOM DiVE REiMAGINED v1.0",
       "downloadLink": "https://drive.google.com/file/d/1c1trd6jedoaIAY60Kty67-iszOpMLtPW/view?usp=sharing",
       "forumLink": "https://osu.ppy.sh/community/forums/topics/2019099?n=1",
