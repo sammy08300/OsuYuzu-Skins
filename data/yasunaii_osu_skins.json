@@ -1,0 +1,86 @@
+{
+  "title": "Yasunaii Osu! Skin folder !",
+  "description": "La plus part de mes skins sont modifié avec une interface personalisé sur la version Lazer de Osu!. C'est la liste des skins que j'ai le plus utilisé dans mon histoire Osu!",
+  "bonus": {
+    "collectionDb": {
+      "downloadLink": "https://drive.google.com/file/d/1mpu9S6gve6BvYjvIKwRbd2BKotrnl-YO/view?usp=sharing",
+      "profileLink": "https://wysi727.com/users/14062291"
+    }
+  },
+  "skins": [
+    {
+        "order": 4,
+        "name": "MISKADELUXE",
+        "downloadLink": "https://drive.google.com/file/d/1F4pYIPZJyaV3u7RB5gpqimeJjjEqaJWI/view?usp=sharing",
+        "forumLink": null,
+        "note": "Aucun poste forum",
+        "imageUrl": "/img/MISKADELXE_converted.avif"
+      },
+    {
+      "order": 1,
+      "name": "anzt11w V3 - てんてこ",
+      "downloadLink": "https://drive.google.com/file/d/1KdYi0vG-WFkc3NN6qHRmg0h5qauSzlMa/view?usp=sharing",
+      "forumLink": "https://osu.ppy.sh/community/forums/topics/1948897?n=1",
+      "imageUrl": "/img/anzt11w V3 - てんてこ_converted.avif"
+    },
+    {
+      "order": 2,
+      "name": "Wintherest - v21022023 (Redo_)",
+      "downloadLink": "https://drive.google.com/file/d/1HjdBghbjo1DSB1XUubiUMZ-ZGocfVCv4/view?usp=sharing",
+      "forumLink": "https://osu.ppy.sh/community/forums/topics/1498493?n=1",
+      "imageUrl": "/img/Wintherest - v21022023 (Redo_)_converted.avif"
+    },
+    {
+      "order": 7,
+      "name": "XooMoon Long Blue Trail",
+      "downloadLink": "https://drive.google.com/file/d/1Aa7nkG-uYMc3IJAdBwpnoeGJiqmmbexg/view?usp=sharing",
+      "forumLink": null,
+      "note": "Aucun poste forum",
+      "imageUrl": "/img/XooMoon Long Blue Trail_converted.avif"
+    },
+    {
+      "order": 8,
+      "name": "IJN Yamashiro V2 (16-9) v2.0.0",
+      "downloadLink": "https://drive.google.com/file/d/1XigeCz7kcSG3IqkbevRcT6SmrILhDwts/view?usp=sharing",
+      "forumLink": "https://osu.ppy.sh/community/forums/topics/1004844?n=1",
+      "imageUrl": "/img/IJN Yamashiro V2 (16-9) v2.0.0_converted.avif"
+    },
+    {
+      "order": 6,
+      "name": "anny v2 [ML] (coolrmsil.com)",
+      "downloadLink": "https://drive.google.com/file/d/1SXI5qNGxXFyijGbKaeDPYmAEO4xK4TMk/view?usp=sharing",
+      "forumLink": null,
+      "note": "Aucun poste forum",
+      "imageUrl": "/img/Anny v2 [ML] (coolrmsil.com)_converted.avif"
+    },
+    {
+      "order": 5,
+      "name": "『XooMoon Re;Done』 - Reedkussy",
+      "downloadLink": "https://drive.google.com/file/d/1NHhTEi_KQpeENgGRK1ZRQGOtkO2IO155/view?usp=sharing",
+      "forumLink": null,
+      "note": "Aucun poste forum",
+      "imageUrl": "/img/『XooMoon Re;Done』 - Reedkussy_converted.avif"
+    },
+    {
+      "order": 9,
+      "name": "___ Arknights Ch_en v3 (Inflique)",
+      "downloadLink": "https://drive.google.com/file/d/1thPCttheXez-ONArKGP-GMVaeYxe4wCO/view?usp=sharing",
+      "forumLink": "https://osu.ppy.sh/community/forums/topics/1472240?n=1",
+      "imageUrl": "/img/___ Arknights Ch_en v3 (Inflique)_converted.avif"
+    },
+    {
+      "order": 10,
+      "name": "Moonshine 2.1 [NM] (moonstaar)",
+      "downloadLink": "https://drive.google.com/file/d/1b5_wVDZ1UqKPKaj40732KyMZHxnRR_RU/view?usp=sharing",
+      "forumLink": "https://osu.ppy.sh/community/forums/topics/1610388?n=1",
+      "imageUrl": "/img/Moonshine 2.1 [NM] (moonstaar)_converted.avif"
+    },
+    {
+      "order": 3,
+      "name": "FREEDOM DiVE REiMAGINED v1.0",
+      "downloadLink": "https://drive.google.com/file/d/1c1trd6jedoaIAY60Kty67-iszOpMLtPW/view?usp=sharing",
+      "forumLink": "https://osu.ppy.sh/community/forums/topics/2019099?n=1",
+      "imageUrl": "/img/FREEDOM DiVE REiMAGINED v1.0_converted.avif"
+    }
+  ]
+} 
