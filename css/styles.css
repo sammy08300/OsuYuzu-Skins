@@ -51,7 +51,7 @@ body {
 
 /* Header Styles */
 .site-header {
-    padding: 1rem 0;
+    padding: 0.8rem 0;
     background-color: rgba(10, 15, 30, 0.8);
     border-bottom: 1px solid rgba(59, 130, 246, 0.3);
     position: fixed;
@@ -181,24 +181,22 @@ header h1 {
 /* Skins Grid */
 .skins-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .skin-card {
-    background-color: var(--background-card);
+    background-color: rgba(10, 15, 30, 0.7);
+    border: 1px solid rgba(59, 130, 246, 0.2);
     border-radius: var(--border-radius);
     overflow: hidden;
-    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                box-shadow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-                border 0.3s ease;
-    cursor: pointer;
-    border: 1px solid transparent;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-normal);
     position: relative;
-    z-index: 1;
-    animation: fadeIn 0.6s ease forwards;
+    padding-bottom: 1rem;
+    animation: fadeIn var(--transition-normal) forwards;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .skin-card:hover {
@@ -228,34 +226,40 @@ header h1 {
 }
 
 .skin-info {
-    padding: 1.5rem;
+    padding: 1rem 1rem 0.5rem;
 }
 
 .skin-info h2 {
-    font-size: 1.2rem;
+    color: var(--text-light);
+    font-size: 1.3rem;
     margin-bottom: 0.5rem;
-    white-space: nowrap;
+    font-weight: 600;
+    transition: color var(--transition-normal);
     overflow: hidden;
     text-overflow: ellipsis;
-    cursor: pointer;
+    white-space: nowrap;
 }
 
 .skin-buttons {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 0.8rem;
+    gap: 0.8rem;
+    padding: 0 1rem;
+    justify-content: center;
 }
 
 .card-download-button, .card-forum-button {
-    display: inline-block;
-    padding: 0.5rem 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    font-weight: 500;
+    transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .card-download-button::before, .card-forum-button::before {
@@ -266,7 +270,6 @@ header h1 {
     opacity: 0;
     transition: opacity var(--transition-fast);
     border-radius: var(--border-radius);
-    z-index: 1;
 }
 
 .card-download-button:hover::before, .card-forum-button:hover::before {
@@ -307,37 +310,42 @@ header h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    overflow-y: auto;
     opacity: 0;
-    transition: opacity 0.4s ease;
-    backdrop-filter: blur(5px);
+    transition: opacity var(--transition-normal);
+    padding: 20px;
 }
 
 .modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 1;
 }
 
 .modal::before {
     content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    backdrop-filter: blur(8px);
+    z-index: -1;
 }
 
 .modal-content {
     background-color: var(--background-card);
-    margin: 5% auto;
-    padding: 25px;
     border-radius: var(--border-radius);
-    width: 90%;
-    max-width: 900px;
+    max-width: 1000px;
+    width: 95%;
+    margin: auto;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    position: relative;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+    overflow: hidden;
     transform: translateY(30px);
     opacity: 0;
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+    display: flex;
+    flex-direction: column;
 }
 
 .modal.show .modal-content {
@@ -346,78 +354,68 @@ header h1 {
 }
 
 .modal-header {
-    position: relative;
-    height: 36px;
-    background-color: #141623;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
     display: flex;
     justify-content: flex-end;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    background-color: rgba(10, 15, 30, 0.5);
 }
 
 .close-button {
-    position: static;
-    font-size: 20px;
-    font-weight: bold;
-    color: var(--text-light);
-    cursor: pointer;
-    z-index: 20;
-    transition: all var(--transition-fast);
-    background-color: #1a1c2a;
-    width: 36px;
-    height: 36px;
-    border-radius: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 0;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    background: none;
     border: none;
-    user-select: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-normal);
+    padding: 0;
+    line-height: 1;
 }
 
 .close-button:hover {
-    color: #fff;
-    background-color: var(--accent-pink);
+    color: var(--text-light);
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: rotate(90deg);
 }
 
 .modal-body {
-    width: 100%;
-    max-height: calc(90vh - 140px - 36px);
-    overflow: hidden;
     display: flex;
-    justify-content: center;
-    position: relative;
+    flex-direction: column;
+    max-height: 70vh;
+    overflow: hidden;
 }
 
 .modal-image {
     width: 100%;
-    height: auto;
-    max-height: calc(90vh - 140px - 36px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-height: 60vh;
+    overflow: hidden;
 }
 
 .modal-image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    max-width: 100%;
-    margin: 0 auto;
+    display: block;
 }
 
 .modal-footer {
-    padding: 1rem 2rem;
+    padding: 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(10, 15, 30, 0.5);
 }
 
 .modal-footer h2 {
-    font-size: 1.4rem;
+    color: var(--text-light);
+    font-size: 1.5rem;
     margin: 0;
-    flex: 1;
 }
 
 .modal-links {
@@ -426,15 +424,18 @@ header h1 {
 }
 
 .download-button, .forum-button {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     padding: 0.6rem 1.2rem;
     border-radius: var(--border-radius);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .download-button::before, .forum-button::before {
@@ -479,35 +480,59 @@ header h1 {
 
 /* Main Content */
 .main-content {
-    margin-top: 10rem;
-    min-height: calc(100vh - 400px);
+    margin-top: 6rem;
+    min-height: calc(100vh - 6rem - 300px);
 }
 
 /* Footer Styles */
 .site-footer {
     background-color: rgba(10, 15, 30, 0.9);
     border-top: 1px solid rgba(59, 130, 246, 0.3);
-    padding-top: 3rem;
-    margin-top: 3rem;
+    padding-top: 2rem;
+    margin-top: 2rem;
     position: relative;
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-    padding-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+}
+
+.footer-info, 
+.footer-resources, 
+.footer-social, 
+.footer-projects {
+    width: calc(50% - 0.5rem);
+    min-width: 0;
+}
+
+.footer-info {
+    order: 1;
+}
+
+.footer-resources {
+    order: 2;
+}
+
+.footer-social {
+    order: 3;
+}
+
+.footer-projects {
+    order: 4;
 }
 
 .footer-info h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
 }
 
 .footer-info p {
     color: var(--text-secondary);
     max-width: 300px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .bonus-link {
@@ -538,8 +563,8 @@ header h1 {
 .footer-resources h4,
 .footer-projects h4 {
     color: var(--text-light);
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
 }
 
 .footer-links ul,
@@ -553,7 +578,7 @@ header h1 {
 .footer-social li,
 .footer-resources li,
 .footer-projects li {
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer-links a,
@@ -617,11 +642,13 @@ header h1 {
 }
 
 .copyright {
-    position: absolute;
-    bottom: 1rem;
-    right: 2rem;
-    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 0.5rem 0;
+    font-size: 0.8rem;
     color: var(--text-secondary);
+    order: 5;
 }
 
 /* Animations */
@@ -679,12 +706,18 @@ html {
         flex-direction: column;
         justify-content: center;
     }
+    
+    /* Optimisation pour les tablettes */
+    .skins-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.5rem;
+        padding: 0.3rem 0;
     }
     
     .logo-container {
@@ -692,15 +725,33 @@ html {
     }
     
     header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .main-nav ul {
-        gap: 0.8rem;
+        gap: 0.5rem;
+        padding: 0.3rem 0;
+    }
+    
+    .main-nav a {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .main-content {
+        margin-top: 5.5rem;
     }
     
     .footer-content {
-        grid-template-columns: 1fr;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+    
+    .footer-info, 
+    .footer-resources, 
+    .footer-social, 
+    .footer-projects {
+        width: calc(50% - 0.5rem);
         text-align: center;
     }
     
@@ -714,11 +765,71 @@ html {
         justify-content: center;
     }
     
-    .copyright {
-        position: static;
-        text-align: center;
-        margin-top: 2rem;
-        grid-column: 1 / -1;
+    .footer-links a,
+    .footer-social a,
+    .footer-resources a,
+    .footer-projects a {
+        font-size: 0.9rem;
+    }
+    
+    .footer-links a i,
+    .footer-social a i,
+    .footer-resources a i,
+    .footer-projects a i {
+        width: 16px;
+        margin-right: 6px;
+    }
+    
+    .footer-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .footer-links h4,
+    .footer-social h4,
+    .footer-resources h4,
+    .footer-projects h4 {
+        font-size: 1rem;
+    }
+    
+    /* Optimisations pour les cards sur mobile */
+    .skins-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.2rem;
+        margin-top: 1.5rem;
+    }
+    
+    .skin-info h2 {
+        font-size: 1.2rem;
+    }
+    
+    .skin-buttons {
+        gap: 0.6rem;
+    }
+    
+    .card-download-button, .card-forum-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Ajustements de la modal pour tablettes */
+    .modal {
+        padding: 15px;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+    
+    .modal-footer {
+        padding: 1.2rem;
+    }
+    
+    .modal-footer h2 {
+        font-size: 1.3rem;
+    }
+    
+    .download-button, .forum-button {
+        padding: 0.5rem 1rem;
     }
 }
 
@@ -735,17 +846,293 @@ html {
         justify-content: space-between;
     }
     
-    header h1 {
-        font-size: 2.5rem;
+    .header-container {
+        padding: 0.2rem 0;
     }
     
-    .skins-grid {
-        grid-template-columns: 1fr;
+    header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .subtitle {
+        font-size: 0.8rem;
     }
     
     .main-nav ul {
         flex-wrap: wrap;
         justify-content: center;
+        padding: 0.2rem 0;
+    }
+    
+    .main-nav a {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .main-content {
+        margin-top: 5rem;
+    }
+    
+    /* Restauration des éléments supprimés accidentellement */
+    .skins-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+    
+    .footer-content {
+        gap: 0.8rem;
+    }
+    
+    .footer-info, 
+    .footer-resources, 
+    .footer-social, 
+    .footer-projects {
+        width: calc(50% - 0.4rem);
+    }
+    
+    .site-footer {
+        padding-top: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .back-to-top i {
+        font-size: 1.2rem;
+    }
+    
+    /* Ajuster la taille des cartes sur petit mobile */
+    .skin-info {
+        padding: 0.8rem 0.8rem 0.4rem;
+    }
+    
+    .skin-info h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .skin-buttons {
+        padding: 0 0.8rem;
+    }
+    
+    .card-download-button, .card-forum-button {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Ajustements supplémentaires de la modal pour mobiles */
+    .modal {
+        padding: 10px;
+        align-items: flex-start;  /* Alignement en haut plutôt qu'au centre */
+        padding-top: 50px;  /* Espace en haut pour faciliter la fermeture */
+    }
+    
+    .modal-content {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .modal-header {
+        padding: 0.8rem;
+    }
+    
+    .close-button {
+        font-size: 1.8rem;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .modal-body {
+        max-height: 60vh;
+    }
+    
+    .modal-image {
+        max-height: 50vh;
+    }
+    
+    .modal-footer h2 {
+        font-size: 1.2rem;
+    }
+    
+    .download-button, .forum-button {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.4rem;
+    }
+    
+    .subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .footer-links li,
+    .footer-social li,
+    .footer-resources li,
+    .footer-projects li {
+        margin-bottom: 0.3rem;
+    }
+    
+    .footer-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .footer-links h4,
+    .footer-social h4,
+    .footer-resources h4,
+    .footer-projects h4 {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Ajustements pour très petits écrans */
+    .skins-grid {
+        grid-template-columns: 1fr;  /* Une seule colonne sur très petit écran */
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .main-nav ul {
+        gap: 0.3rem;
+    }
+    
+    .main-nav a {
+        padding: 0.25rem 0.4rem;
+        font-size: 0.8rem;
+    }
+    
+    .main-content {
+        margin-top: 4.5rem;
+    }
+    
+    /* Ajustements supplémentaires de la modal pour très petits écrans */
+    .modal {
+        padding: 8px;
+        padding-top: 40px;
+    }
+    
+    .modal-header {
+        padding: 0.6rem;
+    }
+    
+    .close-button {
+        font-size: 1.6rem;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .modal-body {
+        max-height: 50vh;
+    }
+    
+    .modal-image {
+        max-height: 40vh;
+    }
+    
+    .modal-footer {
+        padding: 0.8rem;
+    }
+    
+    .modal-footer h2 {
+        font-size: 1.1rem;
+    }
+    
+    .download-button, .forum-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Force la disposition en grille pour les très petits écrans */
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+    
+    .footer-info, 
+    .footer-resources, 
+    .footer-social, 
+    .footer-projects {
+        width: calc(50% - 0.4rem);
+    }
+    
+    .footer-info {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    
+    .footer-resources {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+    
+    .footer-social {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+    
+    .footer-projects {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+    
+    .footer-info h3 {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .footer-links h4,
+    .footer-social h4,
+    .footer-resources h4,
+    .footer-projects h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .footer-links li,
+    .footer-social li,
+    .footer-resources li,
+    .footer-projects li {
+        margin-bottom: 0.3rem;
+    }
+    
+    .footer-links a,
+    .footer-social a,
+    .footer-resources a,
+    .footer-projects a {
+        font-size: 0.8rem;
+    }
+    
+    .footer-links a i,
+    .footer-social a i,
+    .footer-resources a i,
+    .footer-projects a i {
+        width: 14px;
+        margin-right: 4px;
+    }
+    
+    .footer-info p {
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+    }
+}
+
+@media (max-width: 360px) {
+    /* Pour les très petits écrans, on peut revenir à une colonne si nécessaire */
+    .footer-info, 
+    .footer-resources, 
+    .footer-social, 
+    .footer-projects {
+        width: 100%;
     }
 }
 
