@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Forcer le retour en haut de la page au rechargement pour éviter les bugs d'animation
+    if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     // DOM Elements
     const skinsContainer = document.getElementById('skins-container');
     const skinModal = document.getElementById('skin-modal');
@@ -9,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = document.querySelector('.close-button');
     const backToTopBtn = document.getElementById('back-to-top');
     const header = document.querySelector('.site-header');
+    const particlesContainer = document.getElementById('particles-container');
     
     // Variables for header control
     let lastScrollTop = 0;
@@ -16,13 +23,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cache for already loaded images
     const imageCache = new Map();
     
-    // Mapping between skin names and local image files
-    const localImages = {
-        "anzt11w V3 - てんてこ": "img/anzt11w V3 - てんてこ.jpeg",
-        "Wintherest - v21022023 (Redo_)": "img/Wintherest - v21022023 (Redo_).png",
-        "XooMoon Long Blue Trail": "img/XooMoon Long Blue Trail.png"
+    // Intersection Observer for lazy loading
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                loadImageWithAnimation(img);
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: '50px'
+    });
+
+    // Animation Observer for cards
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    /**
+     * Lazy loading amélioré
+     */
+    const loadImageWithAnimation = (img) => {
+        // Ajouter classe de chargement
+        img.classList.add('lazy-loading');
+        
+        const tempImg = new Image();
+        tempImg.onload = () => {
+            // Image chargée, la remplacer
+            img.src = tempImg.src;
+            img.classList.remove('lazy-loading');
+            img.classList.add('loaded');
+            
+            // Cache l'image
+            imageCache.set(img.dataset.src, tempImg.src);
+        };
+        
+        tempImg.onerror = () => {
+            img.classList.remove('lazy-loading');
+            img.classList.add('error');
+        };
+        
+        tempImg.src = img.dataset.src || img.src;
     };
-    
+
     // Update available indicator
     let updateAvailable = false;
     
@@ -190,9 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Back to top button visibility
         if (scrollTop > 300) {
-            backToTopBtn.classList.add('visible');
+            backToTopBtn?.classList.add('visible');
         } else {
-            backToTopBtn.classList.remove('visible');
+            backToTopBtn?.classList.remove('visible');
         }
         
         // Header hide/show on scroll
@@ -200,15 +249,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Detect scroll direction
             if (scrollTop > lastScrollTop + 3) { // Reduced for better reactivity
                 // Scrolling down - hide header immediately
-                header.classList.add('hidden');
+                header?.classList.add('hidden');
             } else if (lastScrollTop - scrollTop > 3) { // Threshold also reduced for upward scrolling
                 // Scrolling up - show header
-                header.classList.remove('hidden');
+                header?.classList.remove('hidden');
             }
             // No else here, which allows the current state to be maintained for micro-movements
         } else {
             // At the beginning of the page, always show header
-            header.classList.remove('hidden');
+            header?.classList.remove('hidden');
         }
         
         lastScrollTop = scrollTop;
@@ -222,26 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
-    // Set up scroll listeners
-    window.addEventListener('scroll', handleScroll);
-    backToTopBtn.addEventListener('click', scrollToTop);
-    
-    /**
-     * Data handling utilities
-     */
-    
-    // Generate a unique hash based on content
-    const generateHash = (data) => {
-        const str = JSON.stringify(data);
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-            const char = str.charCodeAt(i);
-            hash = ((hash << 5) - hash) + char;
-            hash = hash & hash; // Convert to 32bit integer
-        }
-        return hash.toString();
-    };
-
     /**
      * Skin data loading and caching
      */
@@ -278,12 +307,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cachedData = JSON.parse(localStorage.getItem('cachedSkins') || '{}');
                 if (cachedData.skins) {
                     const sortedSkins = [...cachedData.skins].sort((a, b) => a.order - b.order);
-                    displaySkins(sortedSkins);
+                    displaySkins(sortedSkins, fileIdentifier);
                     console.log('Using cached data (file identifier unchanged)');
                     return;
                 }
             }
-            
             // If cache is not valid or doesn't exist, fetch fresh data
             console.log('Fetching new data (invalid cache or modified file)');
             const response = await fetch('data/yuzuctus_osu_skins.json', {
@@ -303,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     timestamp: Date.now()
                 }));
                 
-                displaySkins(sortedSkins);
+                displaySkins(sortedSkins, fileIdentifier);
             }
         } catch (error) {
             console.error('Error loading skins:', error);
@@ -313,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cachedData.skins) {
                 console.log('Using cached data after error');
                 const sortedSkins = [...cachedData.skins].sort((a, b) => a.order - b.order);
-                displaySkins(sortedSkins);
+                displaySkins(sortedSkins, null);
             } else {
                 skinsContainer.innerHTML = '<p>Unable to load skins. Please try again later.</p>';
             }
@@ -325,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     
     // Display skins in the container with improved performance
-    const displaySkins = (skins) => {
+    const displaySkins = (skins, version) => {
         // Clear the container
         skinsContainer.innerHTML = '';
         
@@ -333,43 +361,66 @@ document.addEventListener('DOMContentLoaded', () => {
         const fragment = document.createDocumentFragment();
         
         // Create and append skin cards
-        skins.forEach(skin => {
+        skins.forEach((skin, index) => {
             const skinCard = document.createElement('div');
             skinCard.classList.add('skin-card');
             
-            // Determine image source (local or online)
-            const imageSrc = localImages[skin.name] || skin.imageUrl;
+            // Determine image source
+            const imageSrc = skin.imageUrl;
             
-            // Add cache-busting parameter for images
-            const imgSrcWithCacheBust = imageSrc.includes('?') 
-                ? `${imageSrc}&v=${Date.now()}` 
-                : `${imageSrc}?v=${Date.now()}`;
+            // Add version-based cache parameter for images
+            const imgSrcWithVersion = version 
+                ? `${imageSrc}?v=${encodeURIComponent(version)}` 
+                : imageSrc;
             
             skinCard.innerHTML = `
                 <div class="skin-image">
-                    <img src="${imgSrcWithCacheBust}" alt="${skin.name}" loading="lazy" onerror="this.onerror=null; this.src='${skin.imageUrl}';">
+                    <img data-src="${imgSrcWithVersion}" alt="${skin.name}" 
+                         style="background: linear-gradient(135deg, rgba(180, 208, 196, 0.1) 0%, rgba(180, 208, 196, 0.2) 50%, rgba(180, 208, 196, 0.1) 100%);"
+                         onerror="this.onerror=null; this.src='${skin.imageUrl}';">
                 </div>
                 <div class="skin-info">
                     <h2 title="${skin.name}">${skin.name}</h2>
                     <div class="skin-buttons">
-                        <a href="${skin.downloadLink}" target="_blank" class="card-download-button">Download</a>
-                        ${skin.forumLink ? `<a href="${skin.forumLink}" target="_blank" class="card-forum-button">Forum</a>` : ''}
+                        <a href="${skin.downloadLink}" target="_blank" class="card-download-button">
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                        ${skin.forumLink ? `<a href="${skin.forumLink}" target="_blank" class="card-forum-button">
+                            <i class="fas fa-comments"></i> Forum
+                        </a>` : ''}
                     </div>
                 </div>
             `;
             
+            // Observer pour l'image lazy loading
+            const img = skinCard.querySelector('img');
+            imageObserver.observe(img);
+            
+            // Observer pour l'animation de la carte
+            cardObserver.observe(skinCard);
+            
+            // Animation délayée
+            skinCard.style.animationDelay = `${index * 0.1}s`;
+            
             // Add click event to open modal
             skinCard.querySelector('.skin-image').addEventListener('click', () => {
-                openModal(skin, imageSrc);
+                openModal(skin, imgSrcWithVersion);
             });
             
             skinCard.querySelector('h2').addEventListener('click', () => {
-                openModal(skin, imageSrc);
+                openModal(skin, imgSrcWithVersion);
             });
             
             // Prevent event propagation on buttons
             skinCard.querySelectorAll('.skin-buttons a').forEach(button => {
-                button.addEventListener('click', (e) => e.stopPropagation());
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    // Micro-animation sur le clic
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = '';
+                    }, 150);
+                });
             });
             
             fragment.appendChild(skinCard);
@@ -388,20 +439,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Preload image if needed
         if (!imageCache.has(imageSrc)) {
             const img = new Image();
-            // Add cache-busting parameter for modal images
-            const imgSrcWithCacheBust = imageSrc.includes('?') 
-                ? `${imageSrc}&v=${Date.now()}` 
-                : `${imageSrc}?v=${Date.now()}`;
-            img.src = imgSrcWithCacheBust;
+            img.src = imageSrc;
             imageCache.set(imageSrc, img);
         }
         
-        // Add cache-busting parameter for modal image
-        const modalImgSrc = imageSrc.includes('?') 
-            ? `${imageSrc}&v=${Date.now()}` 
-            : `${imageSrc}?v=${Date.now()}`;
-        
-        modalImg.src = modalImgSrc;
+        modalImg.src = imageSrc;
         modalImg.onerror = () => {
             modalImg.onerror = null;
             modalImg.src = skin.imageUrl;
@@ -523,17 +565,31 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set up modal event listeners
         setupModalListeners();
         
-        // Add refresh button and its style
-        addRefreshButtonStyle();
-        addRefreshButton();
-        
         // Add style for update notifications
         addUpdateNotificationStyle();
         
         // Start periodic update checking
         startUpdateChecker();
+        
+        // Create initial particles
+        createParticles();
+        
+        // Add refresh button and its style
+        addRefreshButton();
+        addRefreshButtonStyle();
+        
+        // Initialize scroll handler
+        window.addEventListener('scroll', handleScroll);
+        
+        // Initialize back to top button
+        backToTopBtn?.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     };
     
     // Start initialization
     initialize();
-}); 
+});

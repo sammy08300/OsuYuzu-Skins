@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osu!Yuzu Skins - Collection de skins pour Osu!</title>
-    <meta name="description" content="Une collection de skins pour Osu! utilisés par Yuzuctus. Téléchargez gratuitement des skins de haute qualité pour améliorer votre expérience de jeu.">
-    <meta name="keywords" content="osu, osu skins, osu! skins, yuzuctus, télécharger skins osu, skins gratuits, osu skin gallery">
+    <title>Yuzuctus Osu skins</title>
+    <meta name="description" content="Découvre les skins Osu! que j'utilise quand je joue ! Collection personnelle de Yuzuctus avec téléchargements gratuits.">
+    <meta name="keywords" content="yuzuctus, osu skins, collection personnelle, skins osu gratuits, télécharger skins osu">
     <meta name="author" content="Yuzuctus">
-    <meta property="og:title" content="Osu!Yuzu Skins - Collection de skins pour Osu!">
-    <meta property="og:description" content="Découvrez et téléchargez une collection de skins Osu! de haute qualité utilisés par Yuzuctus.">
+    <meta property="og:title" content="Skins Osu! de Yuzuctus - Ma Collection Personnelle">
+    <meta property="og:description" content="Découvre les skins Osu! que j'utilise personnellement quand je joue. Téléchargement gratuit !">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://votre-site.com/">
     <meta property="og:image" content="favicon.svg">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#b4d0c4">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,52 +31,69 @@
     <meta http-equiv="Expires" content="0">
 </head>
 <body>
+    <!-- L'animation de fond est maintenant gérée via le body en CSS -->
+    
     <header class="site-header">
         <div class="container header-container">
             <div class="logo-container">
                 <h1><span class="osu">Osu!</span><span class="yuzu">Yuzu</span> skins</h1>
-                <p class="subtitle">Yuzuctus Skins Gallery</p>
+                <p class="subtitle">Yuzuctus Collections skin </p>
             </div>
         </div>
     </header>
 
     <main class="container main-content">
-        <div class="skins-grid" id="skins-container">
-            <!-- Skins will be loaded here via JavaScript -->
-        </div>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>My Osu! Skins Collection</h2>
+                <p class="hero-description">
+                    The skins I actually use when playing. <br>
+                    Download with google drive.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skins Grid -->
+        <section class="skins-section">
+            <h3 class="section-title">Collection</h3>
+            <div class="skins-grid" id="skins-container">
+                <!-- Skins will be loaded here via JavaScript -->
+            </div>
+        </section>
     </main>
 
     <footer id="footer" class="site-footer">
         <div class="container footer-content">
             <div class="footer-info">
                 <h3><span class="osu">Osu!</span><span class="yuzu">Yuzu</span> skins</h3>
-                <p>Collections of skins used by Yuzuctus</p>
+                <p>Ma collection personnelle de skins Osu! que j'utilise quand je joue. Tous les crédits vont aux créateurs originaux !</p>
             </div>
             <div class="footer-resources">
-                <h4>Find skins</h4>
+                <h4>Trouve d'autres skins</h4>
                 <ul>
-                    <li><a href="https://osu.ppy.sh/community/forums/109" target="_blank"><i class="fas fa-comments"></i> Official Osu! Forum</a></li>
+                    <li><a href="https://osu.ppy.sh/community/forums/109" target="_blank"><i class="fas fa-comments"></i> Forum officiel Osu!</a></li>
                     <li><a href="https://compendium.skinship.xyz/" target="_blank"><i class="fas fa-book"></i> Compendium Skinship</a></li>
                     <li><a href="https://skins.osuck.net/fr" target="_blank"><i class="fas fa-palette"></i> Osuck Skins</a></li>
                     <li><a href="https://osuskins.net/" target="_blank"><i class="fas fa-paint-brush"></i> OsuSkins.net</a></li>
                 </ul>
             </div>
             <div class="footer-social">
-                <h4>More resources</h4>
+                <h4>Ressources utiles</h4>
                 <ul>
-                    <li><a href="https://osu.ppy.sh/community/forums/119" target="_blank"><i class="fas fa-cogs"></i> Skins in development</a></li>
-                    <li><a href="https://osu.ppy.sh/community/forums/124" target="_blank"><i class="fas fa-random"></i> Remixed skins</a></li>
+                    <li><a href="https://osu.ppy.sh/community/forums/119" target="_blank"><i class="fas fa-cogs"></i> Skins en développement</a></li>
+                    <li><a href="https://osu.ppy.sh/community/forums/124" target="_blank"><i class="fas fa-random"></i> Skins remixés</a></li>
                     <li><a href="https://www.reddit.com/r/OsuSkins/" target="_blank"><i class="fab fa-reddit-alien"></i> Reddit OsuSkins</a></li>
                 </ul>
             </div>
             <div class="footer-projects">
-                <h4>Other projects</h4>
+                <h4>Mes autres projets</h4>
                 <ul>
                     <li><a href="https://osurea.vercel.app/" target="_blank"><i class="fas fa-chart-area"></i> OsuRea Area visualizer</a></li>
                 </ul>
             </div>
             <div class="copyright">
-                <p>© 2024 Osu!Yuzu Skins Gallery. All rights reserved.</p>
+                <p>© 2024 Collection personnelle Yuzuctus • Tous les skins appartiennent à leurs créateurs respectifs</p>
             </div>
         </div>
     </footer>
@@ -107,6 +126,28 @@
 
     <script src="js/app.js"></script>
     
+    <script>
+        // --- Script pour masquer le header au scroll ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('.site-header');
+            if (!header) return;
+
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', () => {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > lastScrollTop && scrollTop > header.offsetHeight) {
+                    // Scroll vers le bas : on masque le header
+                    header.classList.add('hidden');
+                } else {
+                    // Scroll vers le haut ou proche du sommet : on affiche le header
+                    header.classList.remove('hidden');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, { passive: true });
+        });
+    </script>
     <!-- Enregistrement du service worker -->
     <script>
         // Enregistrement du service worker seulement si le navigateur le prend en charge
@@ -142,4 +183,4 @@
         }
     </script>
 </body>
-</html> 
+</html>
